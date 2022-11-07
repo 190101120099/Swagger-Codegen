@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.springrest.Service.CourseService;
 import com.springrest.entities.Course;
 import com.springrest.entities.CourseException;
@@ -33,15 +32,15 @@ public class CourseController {
         return ResponseEntity.ok().body(courseService.getAllCourse());
     }
 
-    @GetMapping("/getById")
-    public ResponseEntity < Course > getcourseById(@PathVariable String  id) {
-        return ResponseEntity.ok().body(courseService.getCourseById(id));
+    @GetMapping("/get")
+    public Course getCourses(@RequestParam(value = "id") String id) throws CourseException {
+        return courseService.getCourseById(id);
     }
+    
     @GetMapping("/getByName")
     public Course getCourse(@RequestParam(value = "name") String name) throws CourseException {
         return courseService.getCourseByName(name);
     }
-
 
     @PostMapping("/create")
     public ResponseEntity < Course > createCourse(@RequestBody Course course) {
