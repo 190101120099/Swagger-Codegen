@@ -47,15 +47,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public Course getCourseById(String courseId) {
-
-        Optional < Course > courseDb = this.courseRepository.findById(courseId);
-
-        if (courseDb.isPresent()) {
-            return courseDb.get();
-        } else {
-            throw new CourseException("Record not found with id : " + courseId);
-        }
+    public Course getCourseById(String id) throws CourseException {
+        Optional<Course> course = courseRepository.findById(id);
+        if (course.isEmpty())
+            throw new CourseException("Course not present");
+        return course.get();
     }
     
     @Override
@@ -67,8 +63,7 @@ public class CourseServiceImpl implements CourseService{
             throw new CourseException("Course not found");
 
 }
-
-
+    
     @Override
     public void deleteCourse(String courseId) {
         Optional < Course > courseDb = this.courseRepository.findById(courseId);
