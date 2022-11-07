@@ -2,11 +2,9 @@ package com.springrest.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.springrest.entities.Course;
 import com.springrest.entities.CourseException;
 import com.springrest.repository.CourseRepository;
